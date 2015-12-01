@@ -10,7 +10,7 @@ class Matrix:
             raise ValueError()
         if type(m) == int and m < 1:
             raise ValueError()
-        if type(m) == list and n != None:
+        if type(m) == list and n is not None:
             raise ValueError()
         if n == None:
             M = m
@@ -24,7 +24,6 @@ class Matrix:
             self.m = m
             self.n = n
             self.M = [[0]*n for i in range(m)]
-
 
     def set(self, mm, nn, x):
         self.M[mm][nn] = x
@@ -111,9 +110,12 @@ class Matrix:
                 M_new[i][j] = self.M[i][j] / other
         return Matrix(M_new)
 
-    def minor(self): #для обратной матрицы
+    def minor(self):
+        """для обратной матрицы"""
         if self.m != self.n:
             raise RuntimeError()
+        if self.n == 2:
+            return(Matrix([[self.M[1][1], self.M[1][0]], [self.M[0][1], self.M[0][0]]]))
         M_new = [[0]*(self.n) for i in range(self.m)]
         for i in range(self.m):
             for j in range(self.n):
