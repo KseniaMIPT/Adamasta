@@ -29,15 +29,28 @@ class Point:
         return Point(S_new)
 
     def len_point(self):
+        """длина вектора"""
         len_point = (self.x ** 2 + self.y ** 2) ** (1/2)
         return len_point
 
+    def triangle_perimeter(self, other, another):
+        """периметр"""
+        perimeter = self.__sub__(other).len_point() + other.__sub__(another).len_point() + another.__sub__(self).len_point()
+        return perimeter
+
 N = int(input())
+a = Point(str(input()))
+b = Point(str(input()))
 c = Point(str(input()))
 
-for i in range(N-1):
-    b = Point(str(input()))
-    c = c.mass(b)
+if N == 3:
+    print(a.triangle_perimeter(b, c))
+else:
+    max_perimeter = a.triangle_perimeter(b, c)
+    Points = [a, b, c]
+    for i in range(N - 3):
+        Points += Point(str(input()))
+        for i in range(len(Points) - 2):
+            for j in range()
 
-print(c)
 
