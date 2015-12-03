@@ -35,22 +35,15 @@ class Point:
 
     def triangle_perimeter(self, other, another):
         """периметр"""
-        perimeter = self.__sub__(other).len_point() + other.__sub__(another).len_point() + another.__sub__(self).len_point()
+        perimeter = float(self.__sub__(other).len_point() + other.__sub__(another).len_point() + another.__sub__(self).len_point())
         return perimeter
 
 N = int(input())
-a = Point(str(input()))
-b = Point(str(input()))
-c = Point(str(input()))
-
-if N == 3:
-    print(a.triangle_perimeter(b, c))
-else:
-    max_perimeter = a.triangle_perimeter(b, c)
-    Points = [a, b, c]
-    for i in range(N - 3):
-        Points += Point(str(input()))
-        for i in range(len(Points) - 2):
-            for j in range()
-
-
+Points = [Point(input()) for i in range(N)]
+max_perimeter = 0
+for i in range(N - 2):
+    for j in range(i + 1, N):
+        for k in range(j + 1, N):
+            if Points[i].triangle_perimeter(Points[j], Points[k]) > max_perimeter:
+                max_perimeter = Points[i].triangle_perimeter(Points[j], Points[k])
+print(max_perimeter)
