@@ -34,9 +34,18 @@ class Point:
         return len_point
 
     def triangle_perimeter(self, other, another):
-        """периметр"""
+        """периметр треугольника"""
         perimeter = float(self.__sub__(other).len_point() + other.__sub__(another).len_point() + another.__sub__(self).len_point())
         return perimeter
+
+    def triangle_area(self, other, another):
+        """площадь треугольника"""
+        p = (1/2) * self.triangle_perimeter(other, another)
+        a = self.__sub__(other).len_point()
+        b = other.__sub__(another).len_point()
+        c = another.__sub__(self).len_point()
+        area = (p * (p - a) * (p - b) * (p - c)) ** (1/2)
+        return area
 
 N = int(input())
 Points = [Point(input()) for i in range(N)]
@@ -46,4 +55,13 @@ for i in range(N - 2):
         for k in range(j + 1, N):
             if Points[i].triangle_perimeter(Points[j], Points[k]) > max_perimeter:
                 max_perimeter = Points[i].triangle_perimeter(Points[j], Points[k])
-print(max_perimeter)
+print('наибольший периметр', max_perimeter)
+
+max_area = 0
+for i in range(N - 2):
+    for j in range(i + 1, N):
+        for k in range(j + 1, N):
+            if Points[i].triangle_area(Points[j], Points[k]) > max_area:
+                max_area = Points[i].triangle_area(Points[j], Points[k])
+print('наибольшая площадь', max_area)
+
