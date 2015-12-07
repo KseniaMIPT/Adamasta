@@ -1,0 +1,7 @@
+cat - кошка
+dog - собака
+mouse - мышь
+house - дом
+eats - ест
+in - в
+too - тоже
