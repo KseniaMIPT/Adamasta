@@ -1,9 +1,9 @@
-import argparse
+from sys import argv
 
-parser = argparse.ArgumentParser(usage='Распечатывание файлов')
-parser.add_argument('values', type=argparse.FileType('r'), nargs='+', help='файлы, которые требуется распечатать')
-args = parser.parse_args()
+if len(argv) < 2:
+    print('Введите имя хотя бы одного файла')
 
-for file in args.values:
+for name in argv[1:]:
+    file = open(name, 'r')
     print(file.read())
     file.close()
