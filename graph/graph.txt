@@ -1,0 +1,14 @@
+apple orange 6
+orange mango 5
+apple mango 1
+banana kiwi 7
+banana pear 1
+mango peach 3
+mango lichee 1
+peach lichee 3
+lichee plum 1
+pear kiwi 5
+mango plum 6
+tomato potato 1
+potato carrot 1
+carrot tomato 1
