@@ -81,6 +81,7 @@ def draw_graph_components(graph):
                 plt.figure(number)
                 draw_graph(graph, component)
                 called_components.append(current_fired.copy())
+    plt.savefig("fruitland_friends.png")
     plt.show()
 
 # Считываем граф
