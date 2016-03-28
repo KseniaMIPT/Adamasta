@@ -23,16 +23,19 @@ for name in names:
 
 
 def tree(name, x=0):
-    if (args.folders_only and path.isfile(name)) and name is not None:  # FIXME
-        return None
     if name is not None:
         print('   ' * x + name)
         if path.isdir(name):
             name_list = listdir(name)
+            if args.folders_only:
+                name_list = [name for name in name_list if path.isdir(name)]
+            if args.include:
+                name_list = [name for name in name_list if args.include in name]
+            if args.exclude:
+                name_list = [name for name in name_list if not (args.exclude in name)]
             x += 1
-            for i in range(len(name_list)):
-                tree(name_list[i], x)
-
+            for name in name_list:
+                tree(name, x)
 
 for name in names:
     tree(name, -1)

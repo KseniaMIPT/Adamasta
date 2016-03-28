@@ -13,7 +13,7 @@ parser.add_argument('-v', '--verbose', metavar='ACTION', action='store',
 args = parser.parse_args()
 
 if not args.action and not args.verbose:
-    print('Должен быть указан один из параметров --action и --verbose', file=sys.stderr)
+    print('Должен быть указан один из параметров --action, --verbose', file=sys.stderr)
     sys.exit(-1)
 
 x = float(args.values[0])
