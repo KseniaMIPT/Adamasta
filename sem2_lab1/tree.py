@@ -11,6 +11,7 @@ parser.add_argument('-i', '--include', metavar='ACTION', action="store",
                     help='отображать только те элементы, в названии которых встречается текст')
 parser.add_argument('-e', '--exclude', metavar='ACTION', action="store",
                     help='не отображать те элементы, в названии которых встречается текст')
+#parser.add_argument('-m', '--max_depth', metavar='ACTION', action='store', help='ограничить глубину отображения')
 
 args = parser.parse_args()
 
@@ -35,7 +36,7 @@ def tree(name, x=0):
                 name_list = [name for name in name_list if not (args.exclude in name)]
             x += 1
             for name in name_list:
-                tree(name, x)
+                    tree(name, x)
 
 for name in names:
     tree(name, -1)
