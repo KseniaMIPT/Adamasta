@@ -35,7 +35,7 @@ class TuringMachine:
         print(self.tape)
 
 
-Turing = TuringMachine('test_instructions', 'test_data')
+Turing = TuringMachine('test3_instructions', 'test_data')
 #Turing = TuringMachine('mult_instruction', 'mult_data')
 Turing.action()
 
