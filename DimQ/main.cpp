@@ -9,16 +9,15 @@ class DimQ
 {
 private:
     double value;
-    map<string, int> Dimension = {{'m', metre},
-                                  {'kg', kilogram},
-                                  {'s', second},
-                                  {'A', Ampere},
-                                  {'K', kelvin},
-                                  {'mol', mole},
-                                  {'cd', candela}};
+    map<string, int> Dimension = {make_pair("m", metre),
+                                  make_pair("kg", kilogram),
+                                  make_pair("s", second),
+                                  make_pair("A", Ampere),
+                                  make_pair("K", kelvin),
+                                  make_pair("mol", mole),
+                                  make_pair("cd", candela)};
 
 public:
-
     DimQ(double v) {
         value = v;
     }
@@ -55,11 +54,10 @@ public:
     }
 
     friend ostream &operator<<(ostream &out, const DimQ &D) {
-        out << D.value;
-        map<string, int>::iterator i;
-        for (i = D.Dimension.begin(); i != D.Dimension.end(); ++i){
+        out << D.value << ' ';
+        for (map<string, int>::const_iterator i = D.Dimension.begin(); i != D.Dimension.end(); ++i){
             if (i->second != 0){
-                out << i->first << '^' << i->second;
+                out << i->first << '^' << i->second << ' ';
             }
         }
         return out;
@@ -82,11 +80,11 @@ int main() {
     DimQ<1, 0, 0, 0, 0, 0, 0> S1(10);
     Length S2(13);
     Mass M1(1);
-    std::cout << "Проверка перегрузки оператора унарного минуса: " << -S1 << std::endl;
-    std::cout << "Проверка перегрузки оператора бинароного сдвига: " << S1 << std::endl;
-    std::cout << "Проверка перегрузки оператора бинарного плюса: " << S1 + S2 << std::endl;
-    std::cout << "Проверка перегрузки оператора бинарного минуса: " << S1 - S2 << std::endl;
-    std::cout << S1*S2 << " "<< S1*M1;
+    cout << "Проверка перегрузки оператора унарного минуса: " << -S1 << endl;
+    cout << "Проверка перегрузки оператора бинароного сдвига: " << S1 << endl;
+    cout << "Проверка перегрузки оператора бинарного плюса: " << S1 + S2 << endl;
+    cout << "Проверка перегрузки оператора бинарного минуса: " << S1 - S2 << endl;
+    cout << S1*S2 << " "<< S1*M1;
     //std::cout << M1 + S1 << std::endl; //Так делать нельзя
     return 0;
 }
