@@ -1,7 +1,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <algorithm>
 using namespace std;
 
 template<int metre, int kilogram, int second, int Ampere, int kelvin, int mole, int candela>
@@ -9,13 +8,13 @@ class DimQ
 {
 private:
     double value;
-    map<string, int> Dimension = {make_pair("m", metre),
-                                  make_pair("kg", kilogram),
-                                  make_pair("s", second),
-                                  make_pair("A", Ampere),
-                                  make_pair("K", kelvin),
-                                  make_pair("mol", mole),
-                                  make_pair("cd", candela)};
+    map<string, int> Dimension = {{"m", metre},
+                                  {"kg", kilogram},
+                                  {"s", second},
+                                  {"A", Ampere},
+                                  {"K", kelvin},
+                                  {"mol", mole},
+                                  {"cd", candela}};
 
 public:
     DimQ(double v) {
@@ -77,14 +76,27 @@ int main() {
     typedef DimQ<1, 0, -1, 0, 0, 0, 0> Speed;
     typedef DimQ<1, 0, -2, 0, 0, 0, 0> Acceleration;
     typedef DimQ<0, 0, 0, 0, 0, 0, 0> Constant;
-    DimQ<1, 0, 0, 0, 0, 0, 0> S1(10);
-    Length S2(13);
-    Mass M1(1);
-    cout << "Проверка перегрузки оператора унарного минуса: " << -S1 << endl;
-    cout << "Проверка перегрузки оператора бинароного сдвига: " << S1 << endl;
-    cout << "Проверка перегрузки оператора бинарного плюса: " << S1 + S2 << endl;
-    cout << "Проверка перегрузки оператора бинарного минуса: " << S1 - S2 << endl;
-    cout << S1*S2 << " "<< S1*M1;
-    //std::cout << M1 + S1 << std::endl; //Так делать нельзя
+    // Длина
+    Length l = {100};
+    // Время
+    Time t = {20};
+    // Скорость
+    Speed v = l / t;
+    // Ускорение
+    Speed v2 = {10};
+    Acceleration a = v / t;
+    // Размерная величина
+    auto smth = v*a*a/t;
+    // Безразмерная величина
+    auto dimensionless = v/v;
+
+    cout << v << endl;
+    cout << a << endl;
+    cout << smth << endl;
+    cout << dimensionless << endl;
+    cout << -v << endl; //Проверка перегрузки оператора унарного минуса
+    cout << v + v2 << endl; //Проверка перегрузки оператора бинарного плюса
+    cout << v - v2 << endl;//Проверка перегрузки оператора бинарного минуса
+    //cout << v - t; //Так делать нельзя
     return 0;
 }
